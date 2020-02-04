@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Entity\Article;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -12,6 +13,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArticleFormType extends AbstractType
 {
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -28,6 +36,8 @@ class ArticleFormType extends AbstractType
                     return sprintf('(%d) %s', $user->getId(), $user->getEmail());
                 },
                 'placeholder' => 'Choose an author!',
+                'choices' => $this->userRepository
+                    ->findAllEmailAlphabetical()
             ])
         ;
     }
