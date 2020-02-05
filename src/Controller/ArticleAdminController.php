@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Repository\ArticleRepository;
 use App\Entity\Article;
 use App\Form\ArticleFormType;
