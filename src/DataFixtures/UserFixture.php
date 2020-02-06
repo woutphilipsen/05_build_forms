@@ -32,7 +32,7 @@ class UserFixture extends BaseFixture
                 'engage'
             ));
 
-            $user->setAgreedTermsAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
+            $user->agreeTerms($this->faker->dateTimeBetween('-100 days', '-1 days'));
 
             $apiToken1 = new ApiToken($user);
             $apiToken2 = new ApiToken($user);
@@ -52,7 +52,7 @@ class UserFixture extends BaseFixture
                 $user,
                 'engage'
             ));
-            $user->setAgreedTermsAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
+            $user->agreeTerms($this->faker->dateTimeBetween('-100 days', '-1 days'));
 
             return $user;
         });
